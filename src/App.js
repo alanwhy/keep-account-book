@@ -38,7 +38,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <MonthPicker year={2018} month={5}></MonthPicker>
+        <MonthPicker
+          year={2018}
+          month={5}
+          onChange={(year, month) => {
+            console.log(year, month);
+          }}
+        ></MonthPicker>
         <ViewTab
           activeTab={LIST_VIEW}
           onTabChange={(view) => {
