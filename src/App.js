@@ -3,6 +3,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import PriceList from "./components/PriceList";
+import ViewTab from "./components/ViewTab";
+import { LIST_VIEW } from "./utility";
 
 const items = [
   {
@@ -35,6 +37,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <ViewTab
+          activeTab={LIST_VIEW}
+          onTabChange={(view) => {
+            console.log(view);
+          }}
+        ></ViewTab>
         <PriceList
           items={items}
           onModifyItem={(item) => {
