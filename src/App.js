@@ -14,6 +14,7 @@ const items = [
       id: 1,
       name: "旅行",
       type: "outcome",
+      iconName: "ios-plane",
     },
   },
   {
@@ -25,6 +26,7 @@ const items = [
       id: 1,
       name: "旅行",
       type: "outcome",
+      iconName: "ios-plane",
     },
   },
 ];
