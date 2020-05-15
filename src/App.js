@@ -1,10 +1,11 @@
 import React from "react";
 // import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+// import "./App.css";
 import PriceList from "./components/PriceList";
 import ViewTab from "./components/ViewTab";
 import { LIST_VIEW } from "./utility";
+import MonthPicker from "./components/MonthPicker";
 
 const items = [
   {
@@ -37,6 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <MonthPicker year={2018} month={5}></MonthPicker>
         <ViewTab
           activeTab={LIST_VIEW}
           onTabChange={(view) => {
