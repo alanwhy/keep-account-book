@@ -2,10 +2,25 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PriceList from "./../components/PriceList";
 import ViewTab from "./../components/ViewTab";
-import { LIST_VIEW, TYPE_OUTCOME } from "./../utility";
+import { LIST_VIEW, TYPE_OUTCOME, parseToYearAndMonth } from "./../utility";
 import MonthPicker from "./../components/MonthPicker";
 import CreateBtn from "./../components/CreateBtn";
 import TotalPrice from "./../components/TotalPrice";
+
+const categorys = {
+  "1": {
+    id: 1,
+    name: "旅行",
+    type: "outcome",
+    iconName: "ios-plane",
+  },
+  "2": {
+    id: 2,
+    name: "理财",
+    type: "income",
+    iconName: "logo-yen",
+  }
+}
 
 const items = [
   {
@@ -13,32 +28,35 @@ const items = [
     title: "去云南旅游",
     price: 200,
     date: "2018-09-10",
-    category: {
-      id: 1,
-      name: "旅行",
-      type: "outcome",
-      iconName: "ios-plane",
-    },
+    cid: "1"
   },
   {
     id: 2,
-    title: "去云南旅游",
+    title: "炒股",
     price: 300,
     date: "2018-09-10",
-    category: {
-      id: 1,
-      name: "旅行",
-      type: "outcome",
-      iconName: "ios-plane",
-    },
+    cid: "2"
   },
 ];
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      items,
+      currentDate: parseToYearAndMonth(),
+      tabView: LIST_VIEW,
+    }
+  }
   render() {
+    const { items, currentDate, tabView } = this.state
+    const itemsWithCategory = items.map(item => {
+      item.category = categorys[item.id]
+      return item
+    })
     let totalIncome = 0;
     let totalOutcome = 0;
-    items.forEach((item) => {
+    itemsWithCategory.forEach((item) => {
       if (item.category.type === TYPE_OUTCOME) {
         totalOutcome += item.price;
       } else {
@@ -52,9 +70,9 @@ class Home extends React.Component {
           <div className="row">
             <div className="col">
               <MonthPicker
-                year={2018}
-                month={5}
-                onChange={() => {}}
+                year={currentDate.year}
+                month={currentDate.month}
+                onChange={() => { }}
               ></MonthPicker>
             </div>
             <div className="col">
@@ -66,12 +84,12 @@ class Home extends React.Component {
           </div>
         </header>
         <div className="content-area py-3 px-3">
-          <ViewTab activeTab={LIST_VIEW} onTabChange={() => {}}></ViewTab>
-          <CreateBtn onClick={() => {}}></CreateBtn>
+          <ViewTab activeTab={tabView} onTabChange={() => { }}></ViewTab>
+          <CreateBtn onClick={() => { }}></CreateBtn>
           <PriceList
             items={items}
-            onModifyItem={() => {}}
-            onDeleteItem={() => {}}
+            onModifyItem={() => { }}
+            onDeleteItem={() => { }}
           ></PriceList>
         </div>
       </React.Fragment>
