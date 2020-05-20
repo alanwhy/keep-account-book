@@ -2,10 +2,10 @@ header {
   background: #1f1f1f;
 }
 
-.App {
-  color: #fff;
-}
-
 .list-group {
   color: #212529;
+}
+
+header {
+  color: #fff;
 }
