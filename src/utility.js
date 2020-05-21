@@ -15,11 +15,17 @@ export const range = (size, startAt = 0) => {
   return arr;
 };
 
-
 export const parseToYearAndMonth = (str) => {
-  const date = str ? new Date(str) : new Date()
+  const date = str ? new Date(str) : new Date();
   return {
     year: date.getFullYear(),
-    month: date.getMonth() + 1
-  }
-}
+    month: date.getMonth() + 1,
+  };
+};
+
+export const flatternArr = (arr) => {
+  return arr.reduce((map, item) => {
+    map[item.id] = item;
+    return map;
+  }, {});
+};

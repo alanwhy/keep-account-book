@@ -33,14 +33,14 @@ const items = [
     id: 1,
     title: "去云南旅游",
     price: 200,
-    date: "2018-09-10",
+    date: "2020-05-10",
     cid: "1",
   },
   {
     id: 2,
     title: "炒股",
     price: 300,
-    date: "2018-09-10",
+    date: "2020-05-10",
     cid: "2",
   },
 ];
@@ -49,7 +49,7 @@ const newItem = {
   id: 4,
   title: "新添加的项目",
   price: 300,
-  date: "2018-10-10",
+  date: "2020-04-10",
   cid: "1",
 };
 
