@@ -27,7 +27,7 @@ class PriceForm extends React.Component {
         this.setState({
           validatePass: false,
           errorMessage: '价格数字必须大于0'
-        })     
+        })
       } else if (!isValidDate(date)) {
         this.setState({
           validatePass: false,
@@ -55,14 +55,14 @@ class PriceForm extends React.Component {
   render() {
     const { title, price, date } = this.props.item
     return (
-      <form onSubmit={(event) => {this.sumbitForm(event)}} noValidate>
+      <form onSubmit={(event) => { this.sumbitForm(event) }} noValidate>
         <div className="form-group">
           <label htmlFor="title">标题 *</label>
-          <input 
-            type="text" className="form-control" 
+          <input
+            type="text" className="form-control"
             id="title" placeholder="请输入标题"
             defaultValue={title}
-            ref={(input) => {this.titleInput = input}}
+            ref={(input) => { this.titleInput = input }}
           />
         </div>
         <div className="form-group">
@@ -71,27 +71,27 @@ class PriceForm extends React.Component {
             <div className="input-group-prepend">
               <span className="input-group-text">¥</span>
             </div>
-            <input 
-              type="number" 
-              className="form-control" 
+            <input
+              type="number"
+              className="form-control"
               defaultValue={price}
-              id="price" placeholder="请输入价格" 
-              ref={(input) => {this.priceInput = input}}  
+              id="price" placeholder="请输入价格"
+              ref={(input) => { this.priceInput = input }}
             />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="date">日期 *</label>
-          <input 
-            type="date" className="form-control" 
+          <input
+            type="date" className="form-control"
             id="date" placeholder="请输入日期"
             defaultValue={date}
-            ref={(input) => {this.dateInput = input}}  
+            ref={(input) => { this.dateInput = input }}
           />
         </div>
         <button type="submit" className="btn btn-primary mr-3">提交</button>
         <button className="btn btn-secondary" onClick={this.props.onCancelSubmit}> 取消 </button>
-        { !this.state.validatePass &&
+        {!this.state.validatePass &&
           <div className="alert alert-danger mt-5" role="alert">
             {this.state.errorMessage}
           </div>

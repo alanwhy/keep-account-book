@@ -30,7 +30,7 @@ class App extends Component {
         const { currentDate } = this.state
         const getURLWithData = `/items?monthCategory=${currentDate.year}-${currentDate.month}&_sort=timestamp&_order=desc`
         const results = await Promise.all([axios.get('/categories'), axios.get(getURLWithData)])
-        const [ categories, items ] = results
+        const [categories, items] = results
         this.setState({
           items: flatternArr(items.data),
           categories: flatternArr(categories.data),
@@ -49,7 +49,7 @@ class App extends Component {
           const getURLWithID = `/items/${id}`
           promiseArr.push(axios.get(getURLWithID))
         }
-        const [ fetchedCategories , editItem ] = await Promise.all(promiseArr)
+        const [fetchedCategories, editItem] = await Promise.all(promiseArr)
 
         const finalCategories = fetchedCategories ? flatternArr(fetchedCategories.data) : categories
         const finalItem = editItem ? editItem.data : items[id]
@@ -63,7 +63,7 @@ class App extends Component {
           this.setState({
             categories: finalCategories,
             isLoading: false,
-          })         
+          })
         }
         return {
           categories: finalCategories,
@@ -122,15 +122,15 @@ class App extends Component {
         state: this.state,
         actions: this.actions,
       }}>
-      <Router>
-        <div className="App">
-          <div className="container pb-5">
-            <Route path="/" exact component={Home} />
-            <Route path="/create" component={Create} />
-            <Route path="/edit/:id" component={Create} />
+        <Router>
+          <div className="App">
+            <div className="container pb-5">
+              <Route path="/" exact component={Home} />
+              <Route path="/create" component={Create} />
+              <Route path="/edit/:id" component={Create} />
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
       </AppContext.Provider>
     );
   }

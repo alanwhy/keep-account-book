@@ -43,7 +43,7 @@ export const testCategories = [
   },
 ]
 
-export const testItems = [    
+export const testItems = [
   {
     "title": "buy stuff for kitten",
     "price": 100,

@@ -3,8 +3,7 @@
 }
 
 [role="button"], /* explicit button semantics */
-a[href="#"], a[href="#0"] /* Common patterns for the <a> element used as a button */
-{
+a[href="#"], a[href="#0"] /* Common patterns for the <a> element used as a button */ {
   cursor: pointer;
 }
 
@@ -32,6 +31,10 @@ a[href="#"], a[href="#0"] /* Common patterns for the <a> element used as a butto
   background: #fff;
 }
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

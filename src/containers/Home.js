@@ -4,7 +4,7 @@ import Ionicon from 'react-ionicons'
 import logo from '../logo.svg'
 import { withRouter } from 'react-router-dom'
 import PieChart from '../components/PieChart'
-import { LIST_VIEW, CHART_VIEW, TYPE_INCOME, TYPE_OUTCOME, Colors} from '../utility'
+import { LIST_VIEW, CHART_VIEW, TYPE_INCOME, TYPE_OUTCOME, Colors } from '../utility'
 import PriceList from '../components/PriceList'
 import MonthPicker from '../components/MonthPicker'
 import CreateBtn from '../components/CreateBtn'
@@ -16,7 +16,7 @@ import withContext from '../WithContext'
 const tabsText = [LIST_VIEW, CHART_VIEW]
 
 const generateChartDataByCategory = (items, type = TYPE_OUTCOME) => {
-  let categoryMap = { }
+  let categoryMap = {}
   items.filter(item => item.category.type === type).forEach((item) => {
     if (categoryMap[item.cid]) {
       categoryMap[item.cid].value += (item.price * 1)
@@ -81,74 +81,74 @@ export class Home extends Component {
     return (
       <React.Fragment>
         <div className="App-header">
-            <div className="row mb-5 justify-content-center">
-              <img src={logo} className="App-logo" alt="logo" />
+          <div className="row mb-5 justify-content-center">
+            <img src={logo} className="App-logo" alt="logo" />
+          </div>
+          <div className="row">
+            <div className="col">
+              <MonthPicker
+                year={currentDate.year}
+                month={currentDate.month}
+                onChange={this.changeDate}
+              />
             </div>
-            <div className="row">
-              <div className="col">
-                <MonthPicker
-                  year={currentDate.year}
-                  month={currentDate.month}
-                  onChange={this.changeDate}
-                />
-              </div>
-              <div className="col">
-                <TotalPrice
-                  income={totalIncome}
-                  outcome={totalOutcome}
-                />
-              </div>
+            <div className="col">
+              <TotalPrice
+                income={totalIncome}
+                outcome={totalOutcome}
+              />
             </div>
           </div>
-          <div className="content-area py-3 px-3">
-            { isLoading &&
-              <Loader />
-            }
-            { !isLoading &&
+        </div>
+        <div className="content-area py-3 px-3">
+          {isLoading &&
+            <Loader />
+          }
+          {!isLoading &&
             <React.Fragment>
-            <Tabs activeIndex={tabIndex} onTabChange={this.changeView}>
-              <Tab>
-                <Ionicon 
-                  className="rounded-circle mr-2" 
-                  fontSize="25px"
-                  color={Colors.blue}
-                  icon='ios-paper'
-                />
+              <Tabs activeIndex={tabIndex} onTabChange={this.changeView}>
+                <Tab>
+                  <Ionicon
+                    className="rounded-circle mr-2"
+                    fontSize="25px"
+                    color={Colors.blue}
+                    icon='ios-paper'
+                  />
                 列表模式
               </Tab>
-              <Tab>
-                <Ionicon 
-                  className="rounded-circle mr-2" 
-                  fontSize="25px"
-                  color={Colors.blue}
-                  icon='ios-pie'
-                />
+                <Tab>
+                  <Ionicon
+                    className="rounded-circle mr-2"
+                    fontSize="25px"
+                    color={Colors.blue}
+                    icon='ios-pie'
+                  />
                 图表模式
               </Tab>
-            </Tabs>
-            <CreateBtn onClick={this.createItem} />
-            { tabView === LIST_VIEW && itemsWithCategory.length > 0 &&
-              <PriceList 
-                items={itemsWithCategory}
-                onModifyItem={this.modifyItem}
-                onDeleteItem={this.deleteItem}
-              />
-            }
-            { tabView === LIST_VIEW && itemsWithCategory.length === 0 &&
-              <div className="alert alert-light text-center no-record">
-                您还没有任何记账记录
+              </Tabs>
+              <CreateBtn onClick={this.createItem} />
+              {tabView === LIST_VIEW && itemsWithCategory.length > 0 &&
+                <PriceList
+                  items={itemsWithCategory}
+                  onModifyItem={this.modifyItem}
+                  onDeleteItem={this.deleteItem}
+                />
+              }
+              {tabView === LIST_VIEW && itemsWithCategory.length === 0 &&
+                <div className="alert alert-light text-center no-record">
+                  您还没有任何记账记录
               </div>
-            }
-            { tabView === CHART_VIEW &&
-              <React.Fragment>
-                <PieChart title="本月支出" categoryData={chartOutcomDataByCategory} />
-                <PieChart title="本月收入" categoryData={chartIncomeDataByCategory} />
-              </React.Fragment>
-            }
+              }
+              {tabView === CHART_VIEW &&
+                <React.Fragment>
+                  <PieChart title="本月支出" categoryData={chartOutcomDataByCategory} />
+                  <PieChart title="本月收入" categoryData={chartIncomeDataByCategory} />
+                </React.Fragment>
+              }
             </React.Fragment>
           }
-          </div>
-        </React.Fragment>
+        </div>
+      </React.Fragment>
     )
   }
 }

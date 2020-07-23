@@ -14,27 +14,27 @@ class CategorySelect extends React.Component {
     return (
       <div className="category-select-component">
         <div className="row">
-        {
-          categories.map((category, index) => {
-            const iconColor = (category.id === selectedCategoryId) ? Colors.white : Colors.gray
-            const backColor = (category.id === selectedCategoryId) ? Colors.blue : Colors.lightGray
-            const activeClassName = (selectedCategoryId === category.id)
-            ? 'category-item col-3 active' : 'category-item col-3'
-            return (
-              <div className={activeClassName} key={index} role="button" style={{ textAlign: 'center'}}
-              onClick={(event) => {this.selectCategory(event, category)}}>
-                <Ionicon
-                  className="rounded-circle"
-                  style={{ backgroundColor: backColor, padding: '5px' }} 
-                  fontSize="50px"
-                  color={iconColor}
-                  icon={category.iconName}
-                />
-                <p>{category.name}</p>
-              </div>
-            )
-          })
-        }
+          {
+            categories.map((category, index) => {
+              const iconColor = (category.id === selectedCategoryId) ? Colors.white : Colors.gray
+              const backColor = (category.id === selectedCategoryId) ? Colors.blue : Colors.lightGray
+              const activeClassName = (selectedCategoryId === category.id)
+                ? 'category-item col-3 active' : 'category-item col-3'
+              return (
+                <div className={activeClassName} key={index} role="button" style={{ textAlign: 'center' }}
+                  onClick={(event) => { this.selectCategory(event, category) }}>
+                  <Ionicon
+                    className="rounded-circle"
+                    style={{ backgroundColor: backColor, padding: '5px' }}
+                    fontSize="50px"
+                    color={iconColor}
+                    icon={category.iconName}
+                  />
+                  <p>{category.name}</p>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     )
